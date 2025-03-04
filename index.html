@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Japanese Ollama Chat</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Подключаем CSS -->
+    <!-- Подключаем Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="chat-wrapper">
+        <h1>Ollama Chat for learning japanese</h1>
+        <div class="chat-container">
+            <div class="chat-box" id="chatBox">
+                <div class="messages-container"> <!-- Новый блок для сообщений -->
+                    <!-- Сообщения чата будут здесь -->
+                </div>
+                <div class="input-background"></div> <!-- Фон за плашкой -->
+                <div class="input-container">
+                    <textarea id="userInput" placeholder="Введите запрос"></textarea>
+                    <button onclick="sendRequest()">
+                        <span class="material-symbols-outlined">call_made</span>
+                    </button>
+                </div>
+                <div class="input-background"></div> <!-- Фон за плашкой -->
+            </div>
+        </div>
+    </div>
+    <img src="ollama.svg" alt="лама" class="lama">
+
+    <!-- Подключение основного JavaScript файла -->
+    <script src="main.js"></script>
+</body>
+</html>

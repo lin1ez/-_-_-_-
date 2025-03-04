@@ -1,0 +1,244 @@
+/* Убираем скролл на странице */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Убираем возможность скролла */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FAF6EF; /* Цвет фона страницы */
+    display: flex;
+    justify-content: center; /* Чат по центру горизонтально */
+    align-items: center; /* Чат по центру вертикально */
+    min-height: 100vh;
+}
+
+.chat-wrapper {
+    display: flex;
+    flex-direction: column; /* Элементы в колонку */
+    align-items: center; /* Центрируем по горизонтали */
+    width: 100%;
+    max-width: 1100px;
+    height: 100vh;
+}
+
+h1 {
+    color: #001514;
+    margin-bottom: 20px; /* Отступ снизу от заголовка */
+    white-space: nowrap;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 1100px; /* Максимальная ширина чата */
+    background-color: #F3E8D3; /* Цвет фона чата */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh; /* Чат занимает всю высоту экрана */
+    position: relative;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Для позиционирования фона и плашки */
+    padding-bottom: 150px; /* Отступ снизу для плашки и фона */
+    width: 100%; /* Чат занимает всю ширину контейнера */
+    max-width: 1100px; /* Максимальная ширина чата */
+    margin: 0 auto; /* Центрируем чат по горизонтали */
+    height: calc(100vh - 140px); /* Высота чата с учетом отступов */
+    overflow: hidden; /* Убираем скролл у chat-box */
+}
+/* Стили для кастомизации скролл-бара */
+.messages-container::-webkit-scrollbar {
+    width: 4px; /* Ширина скролл-бара */
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: transparent; /* Прозрачный фон трека */
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background-color: #C9BCA3; /* Цвет полосы скролла */
+    border-radius: 4px; /* Закругление полосы */
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background-color: #B0A48E; /* Цвет полосы при наведении */
+}
+
+.messages-container {
+    flex: 1;
+    padding: 20px 50px; /* Отступы слева и справа по 50px */
+    overflow-y: auto; /* Скролл внутри блока сообщений */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%; /* Занимает всю доступную высоту */
+}
+
+.input-background {
+    position: fixed; /* Фон фиксирован внизу */
+    bottom: 0; /* Фон прижат к низу */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
+    width: calc(100% - 60px); /* Ширина с учетом отступов 30px слева и справа */
+    max-width: 1040px; /* Максимальная ширина плашки (1100px - 60px) */
+    height: 150px; /* Высота плашки (90px) + 50px сверху + 50px снизу */
+    background-color: #F3E8D3; /* Цвет фона чата */
+    z-index: 1; /* Фон под плашкой */
+}
+
+.input-container {
+    display: flex;
+    align-items: flex-end; /* Выравниваем элементы по нижнему краю */
+    background-color: #DFD3BB;
+    width: calc(100% - 60px); /* Ширина с учетом отступов 30px слева и справа */
+    height: 92px;
+    max-width: 1040px; /* Максимальная ширина плашки (1100px - 60px) */
+    min-height: 92px; /* Минимальная высота плашки */
+    max-height: 170px; /* Максимальная высота плашки */
+    border-radius: 20px;
+    margin-bottom: 30px;
+    padding: 20px 30px; /* Внутренние отступы для содержимого */
+    box-sizing: border-box;
+    position: fixed; /* Плашка фиксируется внизу */
+    bottom: 0; /* Плашка прижата к низу */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
+    z-index: 2; /* Плашка поверх фона */
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none; /* Убираем бордер */
+    background: transparent; /* Убираем фон */
+    color: #ABA291; /* Цвет текста */
+    font-size: 16px;
+    outline: none; /* Убираем обводку при фокусе */
+    resize: none; /* Отключаем resize */
+    overflow-y: auto; /* Скролл по вертикали */
+    max-height: 150px; /* Максимальная высота инпута */
+    line-height: 1.5; /* Межстрочный интервал */
+    white-space: pre-wrap; /* Перенос текста на новую строку */
+}
+
+input[type="text"]::placeholder {
+    color: #ABA291; /* Цвет плейсхолдера */
+}
+
+button {
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
+    background-color: #FFFFFF; /* Цвет фона кнопки */
+    border: none;
+    border-radius: 15px; /* Скругление углов */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Фиксируем кнопку */
+    right: 30px; /* Отступ справа */
+    bottom: 20px; /* Отступ снизу */
+}
+
+button:hover {
+    background-color: #f0f0f0; /* Легкий эффект при наведении */
+}
+
+.material-symbols-outlined {
+    font-size: 24px; /* Размер иконки */
+    color: #ABA391; /* Цвет иконки */
+}
+
+.message {
+    box-sizing: border-box;
+    padding: 11px 14px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+textarea {
+    flex: 1;
+    margin-right: 78px;
+    box-sizing: border-box;
+    border: none; /* Убираем бордер */
+    background: transparent; /* Убираем фон */
+    color: #001514; /* Цвет набранного текста */
+    font-size: 16px;
+    outline: none; /* Убираем обводку при фокусе */
+    resize: none; /* Отключаем resize */
+    overflow-y: auto; /* Скролл по вертикали */
+    max-height: 130px; /* Максимальная высота textarea */
+    line-height: 1.5; /* Межстрочный интервал */
+    white-space: pre-wrap; /* Перенос текста на новую строку */
+    font-family: Arial, sans-serif; /* Шрифт, как у input */
+}
+textarea::placeholder {
+    color: #ABA291; /* Цвет плейсхолдера */
+    opacity: 1; /* Убедимся, что цвет не тускнеет */
+}
+
+/* Убираем стрелочки в WebKit-браузерах */
+textarea::-webkit-scrollbar-button {
+    display: none; /* Скрываем стрелочки */
+}
+
+textarea::-webkit-scrollbar {
+    width: 4px; /* Ширина скролл-бара */
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent; /* Прозрачный фон трека */
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #C9BCA3; /* Цвет полосы скролла */
+    border-radius: 4px; /* Закругление полосы */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #B0A48E; /* Цвет полосы при наведении */
+    cursor: default;
+}
+.user-message {
+    background-color: #FFFFFF; /* Цвет фона моих сообщений */
+    color: #001514; /* Цвет текста моих сообщений */
+    align-self: flex-end; /* Сообщение пользователя справа */
+    border-radius: 20px 20px 0 20px; /* Скругление: верх-право-низ-лево */
+}
+
+.bot-message {
+    background-color: transparent; /* Убираем фон ответных сообщений */
+    color: #001514; /* Цвет текста ответных сообщений */
+    align-self: flex-start; /* Ответные сообщения слева */
+    border-radius: 20px 20px 20px 0; /* Скругление: верх-лево-низ-право */
+}
+
+.loading-message {
+    background-color: transparent; /* Убираем фон индикатора загрузки */
+    color: #001514; /* Цвет текста индикатора загрузки */
+    align-self: flex-start; /* Индикатор загрузки слева */
+}
+
+.error-message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    align-self: flex-start; /* Сообщения об ошибках слева */
+    border-radius: 20px 20px 20px 0; /* Скругление: верх-лево-низ-право */
+}
+
+.lama {
+    position: absolute;
+    z-index: 3;
+    left: 20px;
+    bottom: 0px;
+    width: 70px;
+    height: auto;
+}
